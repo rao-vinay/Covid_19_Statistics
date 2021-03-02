@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Covid - 19 Statistics</string>
+    <string name="covid_wlcm">Covid - 19 Tracker</string>
+    <string name="text_register">New here? Want to Register.</string>
+    <string name="hint_username">User Name</string>
+    <string name="button_register">Register</string>
+    <string name="text_login">Already a user? Login.</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_name">Full Name</string>
+</resources>
