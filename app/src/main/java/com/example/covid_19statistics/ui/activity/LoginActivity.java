@@ -16,6 +16,7 @@ import com.example.covid_19statistics.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -26,8 +27,9 @@ public class LoginActivity extends AppCompatActivity {
     private Button loginBtn;
     private TextView registerBtnText;
 
-    private EditText email;
-    private EditText password;
+    private TextInputLayout email;
+    private TextInputLayout password;
+
     private Button login;
 
 
@@ -49,8 +51,8 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String txt_email = email.getText().toString();
-                String txt_password = password.getText().toString();
+                String txt_email = email.getEditText().toString();
+                String txt_password = password.getEditText().toString();
 
                 if (TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_password)) {
                     Toast.makeText(LoginActivity.this, "Empty Credentials!", Toast.LENGTH_SHORT).show();
@@ -95,7 +97,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    @Override
+    /*@Override
     protected void onStart() {
         super.onStart();
 
@@ -103,5 +105,5 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
             finish();
         }
-    }
+    }*/
 }
