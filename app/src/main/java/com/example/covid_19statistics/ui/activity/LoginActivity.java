@@ -43,20 +43,22 @@ public class LoginActivity extends AppCompatActivity {
         // hooks
         loginBtn = findViewById(R.id.login_Btn);
         registerBtnText = findViewById(R.id.register_user_tv);
-        email = findViewById(R.id.email);
-        password = findViewById(R.id.password);
+        email = (TextInputLayout)findViewById(R.id.email);
+        password = (TextInputLayout)findViewById(R.id.password);
 
         mAuth = FirebaseAuth.getInstance();
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String txt_email = email.getEditText().toString();
-                String txt_password = password.getEditText().toString();
+                String txt_email = email.getEditText().getText().toString();
+                String txt_password = password.getEditText().getText().toString();
 
                 if (TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_password)) {
                     Toast.makeText(LoginActivity.this, "Empty Credentials!", Toast.LENGTH_SHORT).show();
-                } else {
+                } else if (txt_password.length() < 6) {
+                    Toast.makeText(LoginActivity.this, "Password too short!", Toast.LENGTH_SHORT).show();
+                }else {
                     loginUser(txt_email, txt_password);
                 }
             }
@@ -80,8 +82,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(LoginActivity.this, "Update the profile " +
-                            "for better expereince", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Welcome Back!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
@@ -97,7 +98,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    /*@Override
+    @Override
     protected void onStart() {
         super.onStart();
 
@@ -105,5 +106,5 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
             finish();
         }
-    }*/
+    }
 }

@@ -5,12 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.activity.MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/Theme.Covid19Statistics">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp"
+            app:titleTextColor="@color/white"
+            android:theme="@style/AppTheme.Toolbar"/>
+<!--            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"-->
+<!--            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>-->
 
     </com.google.android.material.appbar.AppBarLayout>
     <LinearLayout
@@ -23,7 +35,9 @@
             android:id="@+id/rvCountry"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp">
+            android:padding="5dp"
+            android:layout_marginTop="55dp"
+            >
         </androidx.recyclerview.widget.RecyclerView>
 
         <androidx.recyclerview.widget.RecyclerView

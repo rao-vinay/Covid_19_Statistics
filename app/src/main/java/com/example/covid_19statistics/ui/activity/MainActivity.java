@@ -2,11 +2,13 @@ package com.example.covid_19statistics.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -17,6 +19,7 @@ import com.example.covid_19statistics.api.CoronaApi;
 import com.example.covid_19statistics.api.CoronaService;
 import com.example.covid_19statistics.data.CountriesResponse;
 import com.example.covid_19statistics.ui.adapter.CountryAdapter;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(myToolbar);
 
 
         recyclerView = findViewById(R.id.rvCountry);
@@ -110,6 +115,11 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.action_search) {
             return true;
+        }else if (id == R.id.log_out) {
+            FirebaseAuth.getInstance().signOut();
+            //ref.unauth(); //End user session
+            startActivity(new Intent(MainActivity.this, LoginActivity.class)); //Go back to home page
+            finish();
         }
 
         return super.onOptionsItemSelected(item);

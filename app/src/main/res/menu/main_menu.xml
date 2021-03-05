@@ -8,6 +8,12 @@
         android:icon="@drawable/ic_search"
         android:title="Search"
         app:showAsAction="always"
+        app:iconTint="#ffffff"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         />
+
+    <item
+        android:id="@+id/log_out"
+        android:title="Logout"
+        app:showAsAction="never" />
 </menu>
